@@ -1,0 +1,148 @@
+{
+  "TeamName": "Spurs",
+  "Players": [
+    {
+      "Name": "Lloris",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 44,
+        "Appearances": 442,
+        "Goals": 223,
+        "Assists": 261,
+        "Value": 17.0,
+        "DOB": "1984-01-26T17:05:00+00:00",
+        "Age": 34
+      }
+    },
+    {
+      "Name": "Trippier",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 56,
+        "Appearances": 349,
+        "Goals": 143,
+        "Assists": 268,
+        "Value": 29.0,
+        "DOB": "1978-07-18T16:26:00+01:00",
+        "Age": 40
+      }
+    },
+    {
+      "Name": "Dier",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 63,
+        "Appearances": 387,
+        "Goals": 382,
+        "Assists": 333,
+        "Value": 93.0,
+        "DOB": "1999-05-17T11:49:00+01:00",
+        "Age": 19
+      }
+    },
+    {
+      "Name": "Sanchez",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 45,
+        "Appearances": 15,
+        "Goals": 300,
+        "Assists": 162,
+        "Value": 32.0,
+        "DOB": "1992-01-11T03:19:00+00:00",
+        "Age": 26
+      }
+    },
+    {
+      "Name": "Vertonghen",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 67,
+        "Appearances": 310,
+        "Goals": 323,
+        "Assists": 401,
+        "Value": 36.0,
+        "DOB": "1985-10-10T19:00:00+01:00",
+        "Age": 33
+      }
+    },
+    {
+      "Name": "Rose",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 7,
+        "Appearances": 220,
+        "Goals": 159,
+        "Assists": 24,
+        "Value": 32.0,
+        "DOB": "1990-11-26T02:36:00+00:00",
+        "Age": 28
+      }
+    },
+    {
+      "Name": "Dembele",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 84,
+        "Appearances": 137,
+        "Goals": 400,
+        "Assists": 147,
+        "Value": 72.0,
+        "DOB": "1996-04-30T06:03:00+01:00",
+        "Age": 22
+      }
+    },
+    {
+      "Name": "Alli",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 70,
+        "Appearances": 94,
+        "Goals": 77,
+        "Assists": 7,
+        "Value": 49.0,
+        "DOB": "1980-12-16T17:17:00+00:00",
+        "Age": 38
+      }
+    },
+    {
+      "Name": "Erikson",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 49,
+        "Appearances": 53,
+        "Goals": 435,
+        "Assists": 213,
+        "Value": 71.0,
+        "DOB": "1982-06-06T17:23:00+01:00",
+        "Age": 36
+      }
+    },
+    {
+      "Name": "Kane",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 87,
+        "Appearances": 245,
+        "Goals": 428,
+        "Assists": 90,
+        "Value": 47.0,
+        "DOB": "1996-04-25T14:18:00+01:00",
+        "Age": 22
+      }
+    },
+    {
+      "Name": "Son",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 4,
+        "Appearances": 178,
+        "Goals": 437,
+        "Assists": 427,
+        "Value": 26.0,
+        "DOB": "1992-06-07T00:38:00+01:00",
+        "Age": 26
+      }
+    }
+  ]
+}

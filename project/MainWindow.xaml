@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+       
+        Loaded="Window_Loaded"
+       
+        Title="MainWindow" Height="410" Width="785">
+    <Grid x:Name="root" OpacityMask="White" Background="White">
+
+        <Label Name="lblTeam" Content="Football Team" HorizontalAlignment="Left" Height="35" Margin="242,16,0,0" VerticalAlignment="Top" Width="148" FontSize="22" Foreground="#FF566CF5"/>
+        <Button Name="btnAddPlayers" Content="Add Player"  HorizontalAlignment="Left" Height="32" Margin="91,264,0,0" VerticalAlignment="Top" Width="100" Background="#FFE8E7E7" FontWeight="Bold" FontSize="14" Click="btnAddPlayers_Click"/>
+        <TextBox Name="tbxTeamName"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="27" Margin="91,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+
+        <Label Content="Name:" HorizontalAlignment="Left" Height="28" Margin="37,59,0,0" VerticalAlignment="Top" Width="49"/>
+        <ListBox Name="lbxTeam" HorizontalAlignment="Left" Height="181" Margin="242,96,0,0" VerticalAlignment="Top" Width="246" SelectionChanged="lbxTeam_SelectionChanged" FontSize="14"/>
+
+        <Label x:Name="lblCreateTeam" Content="Create Team" HorizontalAlignment="Left" Height="46" Margin="54,16,0,0" VerticalAlignment="Top" Width="137" FontSize="22" Foreground="#FF566CF5"/>
+        <Label x:Name="lblStats" Content="Player Stats" HorizontalAlignment="Left" Height="48" Margin="500,17,0,0" VerticalAlignment="Top" Width="148" FontSize="22" Foreground="#FF566CF5"/>
+        <Label x:Name="lblPlayer" Content="Create Player" HorizontalAlignment="Left" Height="46" Margin="54,139,0,0" VerticalAlignment="Top" Width="137" FontSize="22" Foreground="#FF566CF5"/>
+
+        <TextBox  x:Name="tbxPlayerName"  VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="27" Margin="91,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Height="28" Margin="37,184,0,0" VerticalAlignment="Top" Width="49"/>
+
+        <Border BorderBrush="#FFA4A1A1" BorderThickness="1" HorizontalAlignment="Left" Height="36" Margin="242,60,0,0" VerticalAlignment="Top" Width="246" RenderTransformOrigin="0.5,0.5">
+            <TextBlock Name="txblkTeamName" TextAlignment="Center" HorizontalAlignment="Left" Height="36" Margin="37,1,0,-3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="165" FontSize="20"/>
+        </Border>
+
+        <ComboBox Name="cbxPlayerType" HorizontalAlignment="Left" VerticalContentAlignment="Center"  Margin="92,217,0,0" VerticalAlignment="Top" Width="100" Height="28"/>
+        <Label Content="Type" HorizontalAlignment="Left" Height="28" Margin="37,217,0,0" VerticalAlignment="Top" Width="49"/>
+        <Button x:Name="btnCreateTeam" Content="Create Team"  HorizontalAlignment="Left" Height="32" Margin="91,92,0,0" VerticalAlignment="Top" Width="100" Background="#FFE8E7E7" FontWeight="Bold" FontSize="14" Click="btnCreateTeam_Click" />
+
+        <Border BorderBrush="#FFA4A1A1" BorderThickness="1" HorizontalAlignment="Left" Height="36" Margin="509,59,0,0" VerticalAlignment="Top" Width="233" RenderTransformOrigin="0.5,0.5">
+            <TextBlock x:Name="txblkPlayerName" TextAlignment="Center" HorizontalAlignment="Left" Height="36" Margin="36,1,0,-3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="165" FontSize="20"/>
+        </Border>
+
+        <TextBlock Name="validationMessage" HorizontalAlignment="Left" Height="24" Margin="37,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Foreground="Red"/>
+        <TextBlock Name="textblockStats" HorizontalAlignment="Left" Height="185" Margin="509,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="233" FontSize="14"/>
+
+        <Button Name="btnSortAZ" Content="A - Z" HorizontalAlignment="Left" Height="33" Margin="242,286,0,0" VerticalAlignment="Top" Width="63" Click="btnSortAZ_Click"/>
+        <Button Name="btnSortZA" Content="Z - A" HorizontalAlignment="Left" Height="33" Margin="319,286,0,0" VerticalAlignment="Top" Width="63" Click="btnSortZA_Click"/>
+        <Button x:Name="btnSave" Content="Save Team" HorizontalAlignment="Left" Height="33" Margin="390,286,0,0" VerticalAlignment="Top" Width="98" Click="btnSave_Click"/>
+        <Button x:Name="btnClear" Content="Clear List" HorizontalAlignment="Left" Height="33" Margin="242,324,0,0" VerticalAlignment="Top" Width="246" Click="btnClear_Click"/>
+
+        <Label Content="Load Team :" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="33" Margin="520,286,0,0" VerticalAlignment="Top" Width="82"/>
+        <ComboBox x:Name="cbxTeams" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="33" Margin="607,286,0,0" VerticalAlignment="Top" Width="106" SelectionChanged="cbxTeams_SelectionChanged"/>
+
     </Grid>
 </Window>
