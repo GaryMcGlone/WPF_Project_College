@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,20 +22,19 @@ namespace project
         public Team()
         {
             TeamName = TeamName;
-            Players = this.Players;
         }
         public Team(string textboxVal)
         {
             TeamName = textboxVal;
         }
-        public Team(List<Player> playerList)
+        public Team(List<Player> players)
         {
-            Players = playerList; 
+            Players = players; 
         }
-        public Team(string textboxValue, List<Player> playerList)
+        public Team(string textboxValue, List<Player> players)
         {
             TeamName = textboxValue;
-            Players = playerList;
+            Players = players;
         }
     }
 }
