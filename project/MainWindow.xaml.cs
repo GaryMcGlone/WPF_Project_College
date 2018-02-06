@@ -37,6 +37,10 @@ namespace project
         //doing this so I can access this object and write it to a file in a different method
         Team team = new Team(players);
 
+        //consts for file path since its used in multiple methods
+        const string PATH = @"C:\Users\garym\Documents\project\project\Saved_Teams\";
+        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -52,7 +56,7 @@ namespace project
             //
             // To do - Make it show the team name in the combobox, not the filepath and filename
             //
-            string[] teamList = Directory.GetFiles(@"C: \Users\garym\Documents\project\project\Saved_Teams\", "*.json");
+            string[] teamList = Directory.GetFiles(@"C:\Users\garym\Documents\project\project\Saved_Teams\", "*.json");
 
             foreach (string file in teamList)
             {
@@ -146,35 +150,32 @@ namespace project
         //Clicking save will store the current team in a json file which you can then view
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            string path = @"C:\Users\garym\Documents\project\project\Saved_Teams\";
             string fileName = tbxTeamName.Text + ".json";
-
             if (lbxTeam.ItemsSource != null)
             {
                 dynamic json = JsonConvert.SerializeObject(team, Formatting.Indented);
-                using (StreamWriter w = new StreamWriter(path + fileName))
+                using (StreamWriter w = new StreamWriter(PATH + fileName))
                 {
                     w.Write(json);
                 }
             }
         }
         private void cbxTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string[] files = Directory.GetFiles(@"C:\Users\garym\Documents\project\project\Saved_Teams\", "*.json");
+        {  
+            foreach (string file in Directory.GetFiles(PATH, "*.json"))
+            {
+                using (StreamReader r = new StreamReader(file))
+                {
+                    string json = r.ReadToEnd();
+                    Team team = JsonConvert.DeserializeObject<Team>(json);
 
-            //Team temp = cbxTeams.SelectedItem as Team;
+                    txblkTeamName.Text = "";
+                    lbxTeam.ItemsSource = null;
 
-            StreamReader r = new StreamReader();
-            string json = r.ReadToEnd();
-            Team team = JsonConvert.DeserializeObject<Team>(json);
-
-            //Updating the gui with the deserialized team object
-            txblkTeamName.Text = "";
-            lbxTeam.ItemsSource = null;
-
-            txblkTeamName.Text = team.TeamName;
-            lbxTeam.ItemsSource = team.Players;
-            r.Dispose();
+                    txblkTeamName.Text = team.TeamName;
+                    lbxTeam.ItemsSource = team.Players;
+                }
+            }
         }
     }
 }
