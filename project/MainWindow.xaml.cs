@@ -41,8 +41,8 @@ namespace project
         Team team = new Team(players);
 
         //consts for file path since its used in multiple methods
-        const string PATH = @"C:\Users\garym\Documents\project\project\Saved_Teams\";
-        
+        const string PATH = @"H:\Year 2\FOOP 2\WPF_Project_College\project\Saved_Teams\";
+
         public MainWindow()
         {
             InitializeComponent();
@@ -59,7 +59,7 @@ namespace project
             // To do - Make it show the team name in the combobox, not the filepath and filename
             //       now showing filename.json might try get rid of .json extension
             //
-            string[] filesList = Directory.GetFiles(@"C:\Users\garym\Documents\project\project\Saved_Teams\", "*.json");
+            string[] filesList = Directory.GetFiles(@"H:\Year 2\FOOP 2\WPF_Project_College\project\Saved_Teams\", "*.json");
 
             foreach (string file in filesList)
             {
@@ -78,11 +78,9 @@ namespace project
             {
                 if (players.Count < STARTING_11)
                 {
-                    //Creating a player and sending the values of the textbox and combobox to the constructor, along with the StatList
                     Starter AddPlayer = new Starter(tbxPlayerName.Text, stats);
                     players.Add(AddPlayer);
 
-                    //Clearing the list then adding the players to the list
                     lbxTeam.ItemsSource = "";
                     lbxTeam.ItemsSource = players;
                 }
@@ -95,17 +93,14 @@ namespace project
                     Substitute AddPlayer = new Substitute(tbxPlayerName.Text, stats);
                     players.Add(AddPlayer);
 
-                    //Clearing the list then adding the players to the list
                     lbxTeam.ItemsSource = "";
                     lbxTeam.ItemsSource = team.Players;
                 }
             }
-            //Clearing the textbox and then bring focus back to the textbox, making it easier to add players
             tbxPlayerName.Text = "";
             tbxPlayerName.Focus();
         }
         //The team object is already created at class level but here I gave the team a name
-        // I initialized the team at class level so that I could write the team object to a json file
         private void btnCreateTeam_Click(object sender, RoutedEventArgs e)
         {
             if (tbxTeamName.Text != "")
@@ -153,11 +148,9 @@ namespace project
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             //Allows you to create a new file everytime you click save
-            //So you can reload different teams each time
             string fileName = tbxTeamName.Text + ".json";
 
-            //Check to see if the listbox has players in it & the team has a name
-            // So you cant save an empty team
+            //making it so you cant save an empty team
             if ((lbxTeam.ItemsSource != null) && (team.TeamName != null))
             {
                 dynamic json = JsonConvert.SerializeObject(team, Formatting.Indented);
@@ -169,21 +162,23 @@ namespace project
         }
         //Selecting a team from the combobox should load in that team object
         private void cbxTeams_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {  
-            foreach (string file in Directory.GetFiles(PATH, "*.json"))
+        {
+            string fileName = cbxTeams.SelectedItem as string;
+
+            fileName  = PATH + fileName;
+
+            using (StreamReader r = new StreamReader(fileName))
             {
-                using (StreamReader r = new StreamReader(file))
-                {
-                    string json = r.ReadToEnd();
-                    Team team = JsonConvert.DeserializeObject<Team>(json);
+                string json = r.ReadToEnd();
+                Team team = JsonConvert.DeserializeObject<Team>(json);
 
-                    txblkTeamName.Text = "";
-                    lbxTeam.ItemsSource = "";
+                txblkTeamName.Text = "";
+                lbxTeam.ItemsSource = "";
 
-                    txblkTeamName.Text = team.TeamName;
-                    lbxTeam.ItemsSource = team.Players;
-                    
-                }
+                tbxTeamName.Text = team.TeamName;
+                txblkTeamName.Text = team.TeamName;
+                lbxTeam.ItemsSource = team.Players;
+
             }
         }
     }

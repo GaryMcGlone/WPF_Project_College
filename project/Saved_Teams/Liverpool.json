@@ -1,0 +1,109 @@
+{
+  "TeamName": "Liverpool",
+  "Players": [
+    {
+      "Name": "Player 1",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 23,
+        "Appearances": 115,
+        "Goals": 143,
+        "Assists": 450,
+        "Value": 27.0,
+        "DOB": "1999-10-24T00:21:00+01:00",
+        "Age": 19
+      }
+    },
+    {
+      "Name": "2",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 6,
+        "Appearances": 227,
+        "Goals": 33,
+        "Assists": 26,
+        "Value": 49.0,
+        "DOB": "1998-01-23T06:10:00+00:00",
+        "Age": 20
+      }
+    },
+    {
+      "Name": "3",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 63,
+        "Appearances": 193,
+        "Goals": 38,
+        "Assists": 195,
+        "Value": 38.0,
+        "DOB": "1996-02-13T23:20:00+00:00",
+        "Age": 22
+      }
+    },
+    {
+      "Name": "4",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 40,
+        "Appearances": 443,
+        "Goals": 414,
+        "Assists": 367,
+        "Value": 35.0,
+        "DOB": "1996-09-26T23:48:00+01:00",
+        "Age": 22
+      }
+    },
+    {
+      "Name": "5",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 51,
+        "Appearances": 8,
+        "Goals": 243,
+        "Assists": 262,
+        "Value": 65.0,
+        "DOB": "1991-03-18T06:10:00+00:00",
+        "Age": 27
+      }
+    },
+    {
+      "Name": "6",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 77,
+        "Appearances": 370,
+        "Goals": 471,
+        "Assists": 414,
+        "Value": 18.0,
+        "DOB": "1982-08-23T05:29:00+01:00",
+        "Age": 36
+      }
+    },
+    {
+      "Name": "8",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 15,
+        "Appearances": 298,
+        "Goals": 29,
+        "Assists": 461,
+        "Value": 2.0,
+        "DOB": "1996-07-18T11:10:00+01:00",
+        "Age": 22
+      }
+    },
+    {
+      "Name": "9",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 62,
+        "Appearances": 289,
+        "Goals": 414,
+        "Assists": 402,
+        "Value": 15.0,
+        "DOB": "1976-12-01T23:11:00+00:00",
+        "Age": 42
+      }
+    }
+  ]
+}
