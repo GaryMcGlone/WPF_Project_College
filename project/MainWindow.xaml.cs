@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Newtonsoft.Json;
+using System.Collections.ObjectModel;
 
 namespace project
 {
@@ -59,7 +60,8 @@ namespace project
             // To do - Make it show the team name in the combobox, not the filepath and filename
             //       now showing filename.json might try get rid of .json extension
             //
-            string[] filesList = Directory.GetFiles(@"H:\Year 2\FOOP 2\WPF_Project_College\project\Saved_Teams\", "*.json");
+            ObservableCollection<string[]> filesList = new ObservableCollection<string[]>();
+            filesList = Directory.GetFiles(@"H:\Year 2\FOOP 2\WPF_Project_College\project\Saved_Teams\", "*.json");
 
             foreach (string file in filesList)
             {
@@ -165,7 +167,7 @@ namespace project
         {
             string fileName = cbxTeams.SelectedItem as string;
 
-            fileName  = PATH + fileName;
+            fileName = PATH + fileName;
 
             using (StreamReader r = new StreamReader(fileName))
             {
