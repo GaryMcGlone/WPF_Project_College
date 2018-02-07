@@ -60,8 +60,8 @@ namespace project
             // To do - Make it show the team name in the combobox, not the filepath and filename
             //       now showing filename.json might try get rid of .json extension
             //
-            ObservableCollection<string[]> filesList = new ObservableCollection<string[]>();
-            filesList = Directory.GetFiles(@"H:\Year 2\FOOP 2\WPF_Project_College\project\Saved_Teams\", "*.json");
+            //ObservableCollection<string[]> filesList = new ObservableCollection<string[]>();
+            string[] filesList = Directory.GetFiles(@"H:\Year 2\FOOP 2\WPF_Project_College\project\Saved_Teams\", "*.json");
 
             foreach (string file in filesList)
             {
@@ -177,7 +177,8 @@ namespace project
                 txblkTeamName.Text = "";
                 lbxTeam.ItemsSource = "";
 
-                tbxTeamName.Text = team.TeamName;
+             
+                tbxTeamName.Text = team.TeamName ;
                 txblkTeamName.Text = team.TeamName;
                 lbxTeam.ItemsSource = team.Players;
 
