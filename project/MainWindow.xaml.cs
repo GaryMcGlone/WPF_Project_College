@@ -129,14 +129,14 @@ namespace project
         {
             players.Sort();
             lbxTeam.ItemsSource = "";
-            lbxTeam.ItemsSource = players;
+            lbxTeam.ItemsSource = team.Players;
         }
         private void btnSortZA_Click(object sender, RoutedEventArgs e)
         {
             players.Sort();
             players.Reverse();
             lbxTeam.ItemsSource = "";
-            lbxTeam.ItemsSource = players;
+            lbxTeam.ItemsSource = team.Players;
         }
         //Method to clear everything so you can create another team
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -177,7 +177,6 @@ namespace project
                 txblkTeamName.Text = "";
                 lbxTeam.ItemsSource = "";
 
-             
                 tbxTeamName.Text = team.TeamName ;
                 txblkTeamName.Text = team.TeamName;
                 lbxTeam.ItemsSource = team.Players;
