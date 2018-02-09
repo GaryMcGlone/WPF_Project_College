@@ -56,7 +56,12 @@ namespace project
             cbxPlayerType.ItemsSource = options;
             cbxPlayerType.SelectedIndex = 0;
 
-            //ObservableCollection<string[]> filesList = GetFilesWithoutExtension();
+            // I want to have an observable collection of files without the file extension so that I can save a team and it will automatically update the combobox
+            ObservableCollection<FileInfo[]> filesList = GetAllFilesWithoutExtension();
+            foreach (string file in filesList)
+            {
+                cbxTeams.Items.Add(new FileInfo(file).Name);
+            }
 
             #region Getting files names with the extension
             //This will get the JSON Files and display them in the combobox so you can load in teams that you previously created and saved
@@ -72,19 +77,16 @@ namespace project
             //}
             #endregion Getting files names with the extension 
         }
-        //public ObservableCollection<string[]> GetFilesWithoutExtension()
-        //{ 
-        //    ObservableCollection<string[]> files = new ObservableCollection<string[]>();
-        //    string[] allFiles = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN);
+        public ObservableCollection<FileInfo[]> GetAllFilesWithoutExtension()
+        {
+            ObservableCollection<FileInfo[]> files = new ObservableCollection<FileInfo[]>();
+            DirectoryInfo dir = new DirectoryInfo(FILE_PATH);
+            FileInfo[] allFiles = dir.GetFiles(SEARCH_PATTERN);
 
-        //    for (int i = 0; i < files.Count; i++)
-        //    {
-        //        string file = Path.GetFileNameWithoutExtension(allFiles);
-        //        files.Add(file);
-        //        cbxTeams.Items.Add(files);
-        //    }
-        //    return files;
-        //}
+            files.Add(allFiles);
+
+            return files;
+        }
         private void btnAddPlayers_Click(object sender, RoutedEventArgs e)
         {
             //Limits for a team, it can only have 11 starting players and 7 subs
@@ -108,12 +110,14 @@ namespace project
         }
         private Starter CreateStarter()
         {
+            //Creating new stats object so each new player has a different set of stats
             Stats stats = new Stats();
             Starter player = new Starter(tbxPlayerName.Text, stats);
             return player;
         }
         private Substitute CreateSubstitute()
         {
+            //Creating new stats object so each new player has a different set of stats
             Stats stats = new Stats();
             Substitute player = new Substitute(tbxPlayerName.Text, stats);
             return player;
@@ -123,7 +127,7 @@ namespace project
         {
             if (tbxTeamName.Text != "")
             {
-                //When you click 'Create Team' button it will create this team then add the team name to the top of the Player listbox
+                //When you click 'Create Team' button it will create this team then add the team name to the top of the players listbox
                 team = new Team(tbxTeamName.Text, players);
                 txblkTeamName.Text = team.TeamName;
             }
@@ -141,6 +145,7 @@ namespace project
             }
         }
         //The next 2 methods are for sort the players in the listbox
+        //Broke it by changing players (list) to an observablecollection
         private void btnSortAZ_Click(object sender, RoutedEventArgs e)
         {
 
@@ -193,7 +198,6 @@ namespace project
                 tbxTeamName.Text = team.TeamName;
                 txblkTeamName.Text = team.TeamName;
                 lbxTeam.ItemsSource = team.Players;
-
             }
         }
     }
