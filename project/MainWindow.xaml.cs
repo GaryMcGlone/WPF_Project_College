@@ -58,9 +58,9 @@ namespace project
 
             // I want to have an observable collection of files without the file extension so that I can save a team and it will automatically update the combobox
             ObservableCollection<FileInfo[]> filesList = GetAllFilesWithoutExtension();
-            foreach (string file in filesList)
+            foreach (FileInfo file in filesList)
             {
-                cbxTeams.Items.Add(new FileInfo(file).Name);
+                cbxTeams.Items.Add(new FileInfo(file.Name));
             }
 
             #region Getting files names with the extension
