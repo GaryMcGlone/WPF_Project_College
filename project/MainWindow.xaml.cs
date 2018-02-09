@@ -11,7 +11,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
@@ -34,15 +33,17 @@ namespace project
     public partial class MainWindow : Window
     {
         //A List of players to be displayed in the listbox
-        static List<Player> players = new List<Player>();
+        //static List<Player> players = new List<Player>();
+        static ObservableCollection<Player> players = new ObservableCollection<Player>();
 
         //Creating the team object here and only passing a list
         //Using overloaded constructor that will create the object with only the list then adding a name to the object in a different method
         //doing this so I can access this object and write it to a file in a different method
         Team team = new Team(players);
 
-        //consts for file path since its used in multiple methods
-        const string PATH = @"H:\Year 2\FOOP 2\WPF_Project_College\project\Saved_Teams\";
+        //consts for file path and search pattern becuase they're used in multiple methods
+        const string SEARCH_PATTERN = "*.json";
+        const string FILE_PATH = @"C:\Users\garym\Documents\project\project\Saved_Teams\";
 
         public MainWindow()
         {
@@ -55,18 +56,34 @@ namespace project
             cbxPlayerType.ItemsSource = options;
             cbxPlayerType.SelectedIndex = 0;
 
+            ObservableCollection<string[]> filesList = GetFilesWithoutExtension();
+
+            #region Getting files names with the extension
             //This will get the JSON Files and display them in the combobox so you can load in teams that you previously created and saved
             //
             // To do - Make it show the team name in the combobox, not the filepath and filename
             //       now showing filename.json might try get rid of .json extension
             //
             //ObservableCollection<string[]> filesList = new ObservableCollection<string[]>();
-            string[] filesList = Directory.GetFiles(@"H:\Year 2\FOOP 2\WPF_Project_College\project\Saved_Teams\", "*.json");
+            //string[] filesList = Directory.GetFiles(@"C:\Users\garym\Documents\project\project\Saved_Teams\", "*.json");
+            //foreach (string file in filesList)
+            //{
+            //    cbxTeams.Items.Add(new FileInfo(file).Name);
+            //}
+            #endregion Getting files names with the extension 
+        }
+        public ObservableCollection<string[]> GetFilesWithoutExtension()
+        { 
+            ObservableCollection<string[]> files = new ObservableCollection<string[]>();
+            string[] allFiles = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN);
 
-            foreach (string file in filesList)
+            for (int i = 0; i < files.Count; i++)
             {
-                cbxTeams.Items.Add(new FileInfo(file).Name);
+                string file = Path.GetFileNameWithoutExtension(allFiles);
+                files.Add(file);
+                cbxTeams.Items.Add(files);
             }
+            return files;
         }
         private void btnAddPlayers_Click(object sender, RoutedEventArgs e)
         {
@@ -83,7 +100,6 @@ namespace project
                     Starter AddPlayer = new Starter(tbxPlayerName.Text, stats);
                     players.Add(AddPlayer);
 
-                    lbxTeam.ItemsSource = "";
                     lbxTeam.ItemsSource = players;
                 }
             }
@@ -95,7 +111,6 @@ namespace project
                     Substitute AddPlayer = new Substitute(tbxPlayerName.Text, stats);
                     players.Add(AddPlayer);
 
-                    lbxTeam.ItemsSource = "";
                     lbxTeam.ItemsSource = team.Players;
                 }
             }
@@ -127,16 +142,14 @@ namespace project
         //The next 2 methods are for sort the players in the listbox
         private void btnSortAZ_Click(object sender, RoutedEventArgs e)
         {
-            players.Sort();
-            lbxTeam.ItemsSource = "";
-            lbxTeam.ItemsSource = team.Players;
+
+            lbxTeam.ItemsSource = players;
         }
         private void btnSortZA_Click(object sender, RoutedEventArgs e)
         {
-            players.Sort();
+
             players.Reverse();
-            lbxTeam.ItemsSource = "";
-            lbxTeam.ItemsSource = team.Players;
+            lbxTeam.ItemsSource = players;
         }
         //Method to clear everything so you can create another team
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -156,7 +169,7 @@ namespace project
             if ((lbxTeam.ItemsSource != null) && (team.TeamName != null))
             {
                 dynamic json = JsonConvert.SerializeObject(team, Formatting.Indented);
-                using (StreamWriter w = new StreamWriter(PATH + fileName))
+                using (StreamWriter w = new StreamWriter(FILE_PATH + fileName))
                 {
                     w.Write(json);
                 }
@@ -167,7 +180,7 @@ namespace project
         {
             string fileName = cbxTeams.SelectedItem as string;
 
-            fileName = PATH + fileName;
+            fileName = FILE_PATH + fileName;
 
             using (StreamReader r = new StreamReader(fileName))
             {
@@ -175,9 +188,8 @@ namespace project
                 Team team = JsonConvert.DeserializeObject<Team>(json);
 
                 txblkTeamName.Text = "";
-                lbxTeam.ItemsSource = "";
 
-                tbxTeamName.Text = team.TeamName ;
+                tbxTeamName.Text = team.TeamName;
                 txblkTeamName.Text = team.TeamName;
                 lbxTeam.ItemsSource = team.Players;
 

@@ -10,7 +10,7 @@ namespace project
     public class Team
     {
         public string TeamName { get; set; }
-        public List<Player> Players { get; set; }
+        public ObservableCollection<Player> Players { get; set; }
 
         public override string ToString()
         {
@@ -27,11 +27,11 @@ namespace project
         {
             TeamName = textboxVal;
         }
-        public Team(List<Player> players)
+        public Team(ObservableCollection<Player> players)
         {
             Players = players; 
         }
-        public Team(string textboxValue, List<Player> players)
+        public Team(string textboxValue, ObservableCollection<Player> players)
         {
             TeamName = textboxValue;
             Players = players;

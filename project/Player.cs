@@ -20,7 +20,7 @@ namespace project
         }
         public override string ToString()
         {
-            return string.Format("{0} - {1}", Name, PlayerType);
+            return string.Format("{0}", Name);
         }
     }
     class Starter : Player
