@@ -56,7 +56,7 @@ namespace project
             cbxPlayerType.ItemsSource = options;
             cbxPlayerType.SelectedIndex = 0;
 
-            ObservableCollection<string[]> filesList = GetFilesWithoutExtension();
+            //ObservableCollection<string[]> filesList = GetFilesWithoutExtension();
 
             #region Getting files names with the extension
             //This will get the JSON Files and display them in the combobox so you can load in teams that you previously created and saved
@@ -72,19 +72,19 @@ namespace project
             //}
             #endregion Getting files names with the extension 
         }
-        public ObservableCollection<string[]> GetFilesWithoutExtension()
-        { 
-            ObservableCollection<string[]> files = new ObservableCollection<string[]>();
-            string[] allFiles = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN);
+        //public ObservableCollection<string[]> GetFilesWithoutExtension()
+        //{ 
+        //    ObservableCollection<string[]> files = new ObservableCollection<string[]>();
+        //    string[] allFiles = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN);
 
-            for (int i = 0; i < files.Count; i++)
-            {
-                string file = Path.GetFileNameWithoutExtension(allFiles);
-                files.Add(file);
-                cbxTeams.Items.Add(files);
-            }
-            return files;
-        }
+        //    for (int i = 0; i < files.Count; i++)
+        //    {
+        //        string file = Path.GetFileNameWithoutExtension(allFiles);
+        //        files.Add(file);
+        //        cbxTeams.Items.Add(files);
+        //    }
+        //    return files;
+        //}
         private void btnAddPlayers_Click(object sender, RoutedEventArgs e)
         {
             //Limits for a team, it can only have 11 starting players and 7 subs
@@ -92,30 +92,58 @@ namespace project
             //Stats object will generate random stats for each player that's created once passed to the constructor
             Stats stats = new Stats();
 
-            //if starter is selected in the combobox create a starting player
-            if (tbxPlayerName.Text != "" && tbxTeamName.Text != "" && cbxPlayerType.Text == "Starter")
+            if ((tbxPlayerName.Text != "") && (tbxTeamName.Text != ""))
             {
-                if (players.Count < STARTING_11)
+                if ((cbxPlayerType.Text == "Starter") && (players.Count < STARTING_11))
                 {
-                    Starter AddPlayer = new Starter(tbxPlayerName.Text, stats);
-                    players.Add(AddPlayer);
-
+                    players.Add(CreateStarter());
+                    lbxTeam.ItemsSource = players;
+                }
+                else if ((cbxPlayerType.Text == "Substitute") && (players.Count < TEAM_LIMIT))
+                {
+                    players.Add(CreateSubstitute());
                     lbxTeam.ItemsSource = players;
                 }
             }
-            // if the substitute combobox option is selected then create a substitute player
-            else if (tbxPlayerName.Text != "" && tbxTeamName.Text != "" && cbxPlayerType.Text == "Substitute")
-            {
-                if (players.Count < TEAM_LIMIT)
-                {
-                    Substitute AddPlayer = new Substitute(tbxPlayerName.Text, stats);
-                    players.Add(AddPlayer);
+     
+            #region Old Way of Creating Players
+            ////if starter is selected in the combobox create a starting player
+            //if (tbxPlayerName.Text != "" && tbxTeamName.Text != "" && cbxPlayerType.Text == "Starter")
+            //{
+            //    if (players.Count < STARTING_11)
+            //    {
+            //        Starter AddPlayer = new Starter(tbxPlayerName.Text, stats);
+            //        players.Add(AddPlayer);
 
-                    lbxTeam.ItemsSource = team.Players;
-                }
-            }
+            //        lbxTeam.ItemsSource = players;
+            //    }
+            //}
+            //// if the substitute combobox option is selected then create a substitute player
+            //else if (tbxPlayerName.Text != "" && tbxTeamName.Text != "" && cbxPlayerType.Text == "Substitute")
+            //{
+            //    if (players.Count < TEAM_LIMIT)
+            //    {
+            //        Substitute AddPlayer = new Substitute(tbxPlayerName.Text, stats);
+            //        players.Add(AddPlayer);
+
+            //        lbxTeam.ItemsSource = team.Players;
+            //    }
+            //}
+            #endregion Old Way of Creating Players
             tbxPlayerName.Text = "";
             tbxPlayerName.Focus();
+        }
+        private Starter CreateStarter()
+        {
+            Stats stats = new Stats();
+            Starter player = new Starter(tbxPlayerName.Text, stats);
+            return player;
+        }
+        private Substitute CreateSubstitute()
+        {
+            Stats stats = new Stats();
+            Substitute player = new Substitute(tbxPlayerName.Text, stats);
+            return player;
         }
         //The team object is already created at class level but here I gave the team a name
         private void btnCreateTeam_Click(object sender, RoutedEventArgs e)
