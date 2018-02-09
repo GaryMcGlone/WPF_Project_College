@@ -89,8 +89,6 @@ namespace project
         {
             //Limits for a team, it can only have 11 starting players and 7 subs
             const int STARTING_11 = 11, TEAM_LIMIT = 18;
-            //Stats object will generate random stats for each player that's created once passed to the constructor
-            Stats stats = new Stats();
 
             if ((tbxPlayerName.Text != "") && (tbxTeamName.Text != ""))
             {
@@ -105,31 +103,6 @@ namespace project
                     lbxTeam.ItemsSource = players;
                 }
             }
-     
-            #region Old Way of Creating Players
-            ////if starter is selected in the combobox create a starting player
-            //if (tbxPlayerName.Text != "" && tbxTeamName.Text != "" && cbxPlayerType.Text == "Starter")
-            //{
-            //    if (players.Count < STARTING_11)
-            //    {
-            //        Starter AddPlayer = new Starter(tbxPlayerName.Text, stats);
-            //        players.Add(AddPlayer);
-
-            //        lbxTeam.ItemsSource = players;
-            //    }
-            //}
-            //// if the substitute combobox option is selected then create a substitute player
-            //else if (tbxPlayerName.Text != "" && tbxTeamName.Text != "" && cbxPlayerType.Text == "Substitute")
-            //{
-            //    if (players.Count < TEAM_LIMIT)
-            //    {
-            //        Substitute AddPlayer = new Substitute(tbxPlayerName.Text, stats);
-            //        players.Add(AddPlayer);
-
-            //        lbxTeam.ItemsSource = team.Players;
-            //    }
-            //}
-            #endregion Old Way of Creating Players
             tbxPlayerName.Text = "";
             tbxPlayerName.Focus();
         }
