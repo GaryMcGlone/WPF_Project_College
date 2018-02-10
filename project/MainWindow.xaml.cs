@@ -61,21 +61,6 @@ namespace project
             {
                 cbxTeams.Items.Add(file);
             }
-           
-
-            #region Getting files names with the extension
-            //This will get the JSON Files and display them in the combobox so you can load in teams that you previously created and saved
-            //
-            // To do - Make it show the team name in the combobox, not the filepath and filename
-            //       now showing filename.json might try get rid of .json extension
-            //
-            //ObservableCollection<string[]> filesList = new ObservableCollection<string[]>();
-            //string[] filesList = Directory.GetFiles(@"C:\Users\garym\Documents\project\project\Saved_Teams\", "*.json");
-            //foreach (string file in filesList)
-            //{
-            //    cbxTeams.Items.Add(new FileInfo(file).Name);
-            //}
-            #endregion Getting files names with the extension 
         }
         private void btnAddPlayers_Click(object sender, RoutedEventArgs e)
         {
