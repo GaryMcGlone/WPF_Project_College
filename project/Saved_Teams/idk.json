@@ -1,0 +1,18 @@
+{
+  "TeamName": "idk",
+  "Players": [
+    {
+      "Name": "dcasf",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 45,
+        "Appearances": 72,
+        "Goals": 96,
+        "Assists": 402,
+        "Value": 37.0,
+        "DOB": "1982-11-30T21:58:00+00:00",
+        "Age": 36
+      }
+    }
+  ]
+}

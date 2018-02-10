@@ -1,0 +1,18 @@
+{
+  "TeamName": "o",
+  "Players": [
+    {
+      "Name": "sa",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 71,
+        "Appearances": 14,
+        "Goals": 346,
+        "Assists": 478,
+        "Value": 45.0,
+        "DOB": "1987-05-06T16:17:00+01:00",
+        "Age": 31
+      }
+    }
+  ]
+}

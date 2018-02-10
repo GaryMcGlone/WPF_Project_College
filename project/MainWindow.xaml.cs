@@ -56,11 +56,12 @@ namespace project
             cbxPlayerType.SelectedIndex = 0;
 
             // I want to have an observable collection of files without the file extension so that I can save a team and it will automatically update the combobox
-            string[] fileList = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN).Select(f => Path.GetFileNameWithoutExtension(f)).ToArray();
-            foreach (string file in fileList)
+            string[] fileArray = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN).Select(f => Path.GetFileNameWithoutExtension(f)).ToArray();     
+            foreach (string file in fileArray)
             {
                 cbxTeams.Items.Add(file);
             }
+
         }
         private void btnAddPlayers_Click(object sender, RoutedEventArgs e)
         {
@@ -120,17 +121,13 @@ namespace project
             }
         }
         //The next 2 methods are for sort the players in the listbox
-        //Broke it by changing players (list) to an observablecollection
         private void btnSortAZ_Click(object sender, RoutedEventArgs e)
         {
-
-            lbxTeam.ItemsSource = players;
+           lbxTeam.ItemsSource = players.OrderBy(players => players.Name);
         }
         private void btnSortZA_Click(object sender, RoutedEventArgs e)
         {
-
-            players.Reverse();
-            lbxTeam.ItemsSource = players;
+           lbxTeam.ItemsSource = players.OrderByDescending(players => players.Name);
         }
         //Method to clear everything so you can create another team
         private void btnClear_Click(object sender, RoutedEventArgs e)
