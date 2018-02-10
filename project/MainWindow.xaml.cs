@@ -33,7 +33,6 @@ namespace project
     public partial class MainWindow : Window
     {
         //A List of players to be displayed in the listbox
-        //static List<Player> players = new List<Player>();
         static ObservableCollection<Player> players = new ObservableCollection<Player>();
 
         //Creating the team object here and only passing a list
@@ -57,11 +56,12 @@ namespace project
             cbxPlayerType.SelectedIndex = 0;
 
             // I want to have an observable collection of files without the file extension so that I can save a team and it will automatically update the combobox
-            ObservableCollection<FileInfo[]> filesList = GetAllFilesWithoutExtension();
-            foreach (FileInfo file in filesList)
+            string[] fileList = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN).Select(f => Path.GetFileNameWithoutExtension(f)).ToArray();
+            foreach (string file in fileList)
             {
-                cbxTeams.Items.Add(new FileInfo(file.Name));
+                cbxTeams.Items.Add(file);
             }
+           
 
             #region Getting files names with the extension
             //This will get the JSON Files and display them in the combobox so you can load in teams that you previously created and saved
@@ -76,16 +76,6 @@ namespace project
             //    cbxTeams.Items.Add(new FileInfo(file).Name);
             //}
             #endregion Getting files names with the extension 
-        }
-        public ObservableCollection<FileInfo[]> GetAllFilesWithoutExtension()
-        {
-            ObservableCollection<FileInfo[]> files = new ObservableCollection<FileInfo[]>();
-            DirectoryInfo dir = new DirectoryInfo(FILE_PATH);
-            FileInfo[] allFiles = dir.GetFiles(SEARCH_PATTERN);
-
-            files.Add(allFiles);
-
-            return files;
         }
         private void btnAddPlayers_Click(object sender, RoutedEventArgs e)
         {
@@ -186,7 +176,7 @@ namespace project
         {
             string fileName = cbxTeams.SelectedItem as string;
 
-            fileName = FILE_PATH + fileName;
+            fileName = FILE_PATH + fileName + ".json";
 
             using (StreamReader r = new StreamReader(fileName))
             {

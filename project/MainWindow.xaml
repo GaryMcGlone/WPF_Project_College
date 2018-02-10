@@ -47,9 +47,5 @@
 
         <Label Content="Load Team :" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="33" Margin="520,286,0,0" VerticalAlignment="Top" Width="82"/>
         <ComboBox x:Name="cbxTeams" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="33" Margin="607,286,0,0" VerticalAlignment="Top" Width="106" SelectionChanged="cbxTeams_SelectionChanged"/>
-
-        <DockPanel >
-            <TextBlock DockPanel.Dock="Bottom"  x:Name="errorMessages"></TextBlock>
-        </DockPanel>
     </Grid>
 </Window>
