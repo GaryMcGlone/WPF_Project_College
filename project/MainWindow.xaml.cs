@@ -40,9 +40,8 @@ namespace project
         //doing this so I can access this object and write it to a file in a different method
         Team team = new Team(players);
 
-        //consts for file path and search pattern becuase they're used in multiple methods
+        //consts for search pattern because it's used in multiple methods
         const string SEARCH_PATTERN = "*.json";
-        const string FILE_PATH = @"C:\Users\garym\Documents\project\project\Saved_Teams\";
 
         public MainWindow()
         {
@@ -61,11 +60,20 @@ namespace project
             cbxPlayerType.SelectedIndex = 0;
             return options;
         }
+        private string GetDirectory()
+        {
+            string dir = Directory.GetCurrentDirectory();
+            DirectoryInfo parent = Directory.GetParent(dir);
+            DirectoryInfo grandParent = Directory.GetParent(parent.FullName);
+            string fileDir = grandParent + "\\Saved_Teams\\";
+
+            return fileDir;
+        }
         // I want to have an observable collection of files without the file extension so that I can save a team and it will automatically update the combobox
         private string[] GetAllFilesWithoutExtension()
         {
             //Gets all files without the extension and stores them in a string array
-            string[] fileArray = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN).Select(f => Path.GetFileNameWithoutExtension(f)).ToArray();
+            string[] fileArray = Directory.GetFiles(GetDirectory(), SEARCH_PATTERN).Select(f => Path.GetFileNameWithoutExtension(f)).ToArray();
 
             //Adding each file to the combobox
             foreach (string file in fileArray)
@@ -157,7 +165,7 @@ namespace project
             if ((lbxTeam.ItemsSource != null) && (team.TeamName != null))
             {
                 dynamic json = JsonConvert.SerializeObject(team, Formatting.Indented);
-                using (StreamWriter w = new StreamWriter(FILE_PATH + fileName))
+                using (StreamWriter w = new StreamWriter(GetDirectory() + fileName))
                 {
                     w.Write(json);
                 }
@@ -168,7 +176,7 @@ namespace project
         {
             string fileName = cbxTeams.SelectedItem as string;
 
-            fileName = FILE_PATH + fileName + ".json";
+            fileName = GetDirectory() + fileName + ".json";
 
             using (StreamReader r = new StreamReader(fileName))
             {
