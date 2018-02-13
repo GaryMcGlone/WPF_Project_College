@@ -1,0 +1,18 @@
+{
+  "TeamName": "adding team",
+  "Players": [
+    {
+      "Name": "with player",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 97,
+        "Appearances": 408,
+        "Goals": 156,
+        "Assists": 435,
+        "Value": 97.0,
+        "DOB": "1984-01-12T21:04:00+00:00",
+        "Age": 34
+      }
+    }
+  ]
+}

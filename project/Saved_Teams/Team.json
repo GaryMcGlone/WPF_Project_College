@@ -1,0 +1,31 @@
+{
+  "TeamName": "Team",
+  "Players": [
+    {
+      "Name": "teqma",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 98,
+        "Appearances": 101,
+        "Goals": 317,
+        "Assists": 78,
+        "Value": 24.0,
+        "DOB": "1985-10-19T18:28:00+01:00",
+        "Age": 33
+      }
+    },
+    {
+      "Name": "afasdf",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 36,
+        "Appearances": 213,
+        "Goals": 461,
+        "Assists": 499,
+        "Value": 39.0,
+        "DOB": "1985-04-16T01:12:00+01:00",
+        "Age": 33
+      }
+    }
+  ]
+}

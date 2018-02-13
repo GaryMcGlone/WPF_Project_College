@@ -1,0 +1,18 @@
+{
+  "TeamName": "refesh",
+  "Players": [
+    {
+      "Name": "please",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 69,
+        "Appearances": 377,
+        "Goals": 341,
+        "Assists": 229,
+        "Value": 89.0,
+        "DOB": "1977-11-16T08:20:00+00:00",
+        "Age": 41
+      }
+    }
+  ]
+}

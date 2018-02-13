@@ -50,18 +50,29 @@ namespace project
         }
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //Adding options to the combobox on window loaded
+            string[] options = GetComboOptions();
+            string[] fileArray = GetAllFilesWithoutExtension();
+        }
+        //Adding options to the combobox on window loaded
+        private string[] GetComboOptions()
+        {
             string[] options = { "Starter", "Substitute" };
             cbxPlayerType.ItemsSource = options;
             cbxPlayerType.SelectedIndex = 0;
+            return options;
+        }
+        // I want to have an observable collection of files without the file extension so that I can save a team and it will automatically update the combobox
+        private string[] GetAllFilesWithoutExtension()
+        {
+            //Gets all files without the extension and stores them in a string array
+            string[] fileArray = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN).Select(f => Path.GetFileNameWithoutExtension(f)).ToArray();
 
-            // I want to have an observable collection of files without the file extension so that I can save a team and it will automatically update the combobox
-            string[] fileArray = Directory.GetFiles(FILE_PATH, SEARCH_PATTERN).Select(f => Path.GetFileNameWithoutExtension(f)).ToArray();     
+            //Adding each file to the combobox
             foreach (string file in fileArray)
             {
                 cbxTeams.Items.Add(file);
             }
-
+            return fileArray;
         }
         private void btnAddPlayers_Click(object sender, RoutedEventArgs e)
         {
@@ -115,7 +126,6 @@ namespace project
 
             if (selectedPlayer != null)
             {
-                textblockStats.Text = "";
                 textblockStats.Text = selectedPlayer.PlayerStats.ToString();
                 txblkPlayerName.Text = selectedPlayer.Name;
             }
@@ -123,11 +133,11 @@ namespace project
         //The next 2 methods are for sort the players in the listbox
         private void btnSortAZ_Click(object sender, RoutedEventArgs e)
         {
-           lbxTeam.ItemsSource = players.OrderBy(players => players.Name);
+            lbxTeam.ItemsSource = players.OrderBy(players => players.Name);
         }
         private void btnSortZA_Click(object sender, RoutedEventArgs e)
         {
-           lbxTeam.ItemsSource = players.OrderByDescending(players => players.Name);
+            lbxTeam.ItemsSource = players.OrderByDescending(players => players.Name);
         }
         //Method to clear everything so you can create another team
         private void btnClear_Click(object sender, RoutedEventArgs e)
@@ -166,6 +176,12 @@ namespace project
                 Team team = JsonConvert.DeserializeObject<Team>(json);
 
                 txblkTeamName.Text = "";
+
+                foreach (Player player in team.Players)
+                {
+                    //adding the players back to the list so you can re-sort them
+                    players.Add(player);
+                }
 
                 tbxTeamName.Text = team.TeamName;
                 txblkTeamName.Text = team.TeamName;

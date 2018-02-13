@@ -1,0 +1,18 @@
+{
+  "TeamName": "please refresh",
+  "Players": [
+    {
+      "Name": "reee",
+      "PlayerType": "Starter",
+      "PlayerStats": {
+        "JerseyNumber": 41,
+        "Appearances": 359,
+        "Goals": 409,
+        "Assists": 439,
+        "Value": 53.0,
+        "DOB": "1977-11-19T14:15:00+00:00",
+        "Age": 41
+      }
+    }
+  ]
+}
